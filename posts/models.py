@@ -15,16 +15,17 @@ class Post(models.Model):
 
     def get_num_comment(self):
         return Comment.objects.filter(post=self).count()
-    # def __str__(self):
-    #     return self.user
+    
+    def __str__(self):
+        return self.user.username
     
 class Like(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
     post=models.ForeignKey(Post,on_delete=models.CASCADE)
-    created_on=models.DateTimeField(auto_created=True)
+    created_on=models.DateTimeField(auto_now_add=True)
 
-    # def __str__(self):
-    #     return self.user
+    def __str__(self):
+        return self.user.username
 
     class Meta:
         #this makes sure that the user and twee pair dont occure more thand once
@@ -41,6 +42,9 @@ class Comment(models.Model):
         #this makes sure that the user and twee pair dont occure more thand once
         #e.g(user1, tweet1) can only exit once 
         unique_together = ("user","post")
+        
 
-    # def __str__(self):
-    #     return self.user
+    def __str__(self):
+        return self.user.username
+
+    
