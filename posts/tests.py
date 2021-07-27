@@ -11,7 +11,7 @@ class PostTests(APITestCase):
     def test_create_post(self):
         
         user = User.objects.create_user(username="segun", password="forlan123")
-        post = Post.objects.create(text= "i am doing great in the land of america", user=user)
+        # post = Post.objects.create(text= "i am doing great in the land of america", user=user)
 
         url = reverse('post-list')
         data = {'post': 'DabApps',"user": user.id}
